@@ -1,5 +1,5 @@
 import UsersController from '../controllers/Users.controller';
-import { auth } from '../middlewares/AuthMiddleware';
+import { verifyToken } from '../middlewares/AuthMiddleware';
 import BaseRoutes from './Base.router';
 
 
@@ -8,9 +8,9 @@ class UsersRouter extends BaseRoutes {
         this.router.post('/register', UsersController.register);
         this.router.post('/login', UsersController.login)
         this.router.post('/logout', UsersController.logout)
-        this.router.put('/:id', auth, UsersController.update);
-        this.router.get('/:id', auth, UsersController.getUser);
-        this.router.get('/', auth, UsersController.index);
+        this.router.put('/:id', verifyToken, UsersController.update);
+        this.router.get('/:id', verifyToken, UsersController.getUser);
+        this.router.get('/', verifyToken, UsersController.index);
     }
 }
 

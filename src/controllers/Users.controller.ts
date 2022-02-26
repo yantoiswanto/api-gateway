@@ -13,8 +13,12 @@ class UsersController {
             if (err.code === 'ECONNREFUSED') {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 
@@ -27,8 +31,12 @@ class UsersController {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
 
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 
@@ -59,37 +67,48 @@ class UsersController {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
 
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 
 
     logout = async (req: Request, res: Response): Promise<Response> => {
         try {
-            const { user_id } = req.body;
-            const user = await axios.post(`${env.URL_SERVICE_USER}/users/logout`, user_id);
+            const user = await axios.post(`${env.URL_SERVICE_USER}/users/logout`, req.body);
             return res.json(user.data)
         } catch (err: any) {
             if (err.code === 'ECONNREFUSED') {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 
     update = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
-            const user = await axios.put(`${env.URL_SERVICE_USER}/users/${id}`);
+            const user = await axios.put(`${env.URL_SERVICE_USER}/users/${id}`, req.body);
             return res.json(user.data)
         } catch (err: any) {
             if (err.code === 'ECONNREFUSED') {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 
@@ -102,8 +121,12 @@ class UsersController {
             if (err.code === 'ECONNREFUSED') {
                 return res.status(500).json({ status: 'error', message: 'service unavailable' })
             }
-            const { status, data } = err.response;
-            return res.status(status).json(data);
+            if (err.response) {
+                const { status, data } = err.response;
+                return res.status(status).json(data);
+            }
+
+            return res.status(500).json({ status: 'error', message: err.message });
         }
     }
 

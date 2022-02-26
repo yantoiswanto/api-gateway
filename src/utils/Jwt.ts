@@ -17,6 +17,13 @@ class Jwt {
         return token;
     }
 
+    public static verifyToken = (token: string): any => {
+        const secretKey = env.JWT_SECRET_REFRESH_TOKEN || 'secret';
+        const credential: any = jwt.verify(token, secretKey);
+        return credential;
+
+    }
+
 }
 
 export default Jwt;

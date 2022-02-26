@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import MediaRouter from './routers/Media.router';
 import UsersRouter from './routers/Users.router';
+import RefreshTokenRouter from './routers/RefreshToken.router';
 
 
 class App {
@@ -34,6 +35,7 @@ class App {
 
         this.app.use('/users', UsersRouter);
         this.app.use('/media', MediaRouter);
+        this.app.use('/refresh-token', RefreshTokenRouter);
     }
 }
 

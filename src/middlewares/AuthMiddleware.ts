@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export const auth = (req: Request, res: Response, next: NextFunction): any => {
+export const verifyToken = (req: Request, res: Response, next: NextFunction): any => {
     if (!req.headers.authorization) {
         res.status(401).send('Unauthorized');
     }
